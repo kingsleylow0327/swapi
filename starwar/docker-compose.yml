@@ -1,0 +1,22 @@
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: DockerfileSQL
+    container_name: starwar_postgres
+    ports:
+      - "5432:5432"
+
+  spring-app:
+    build:
+      context: .
+      dockerfile: DockerfileJava
+    container_name: starwar_spring_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
