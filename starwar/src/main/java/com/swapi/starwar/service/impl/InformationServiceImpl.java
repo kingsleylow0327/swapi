@@ -18,6 +18,9 @@ public class InformationServiceImpl implements InformationService {
 
     @Override
     public ResponseEntity<InformationDto> getInformation(String name) {
+        if (name.isBlank()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Who will name themselves 'Blank'?");
+        }
         Information information = informationRepository.getByName(name).
             orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format("%s is not registered on the planet", name)));
         InformationDto responseDto = information.toDto();
