@@ -51,6 +51,12 @@ There are 2 tables appeared in this application
    - class of startship(class)
    - model of startship(model)
 
+## Database Connection
+   - URL= jdbc:postgresql://localhost:5432/postgres
+   - Username=postgres
+   - Password=postgres
+   - Schema=public
+
 ## Things to take note
 The app and databse is running on default port (8080, 5432)
 
